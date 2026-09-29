@@ -33,10 +33,22 @@ function hierarchy(){
     '</div></div>';
 }
 
+function objectifs(){
+  const objectifes=[
+    ["01","Évoluer","Développer sa puissance et ses compétences pour progresser au sein de Las Noches."],
+    ["02","Se souvenir","Garder en mémoire notre histoire, nos alliés et les épreuves qui nous ont forgés."],
+    ["03","Abattre les Shinigamis","Combattre les Shinigamis qui menacent Las Noches et défendre notre faction."]
+  ];
+  return '<div class="objectives-intro"><span class="eyebrow">Notre voie</span><h2>Les objectifs de Las Noches</h2><p>Trois principes guident la faction Arrancar.</p></div>'+
+    '<div class="objectives">'+objectives.map(([number,title,description])=>
+      '<article class="objective"><span class="objective-number">'+number+'</span><div><h3>'+escapeHTML(title)+'</h3><p>'+escapeHTML(description)+'</p></div></article>'
+    ).join('')+'</div>';
+}
+
 function content(id){
   if(id==="reglement")return rules();
   if(id==="sphere")return hierarchy();
-  if(id==="objectifs")return '<h2>Objectifs</h2>';
+  if(id==="objectifs")return objectifs()';
   if(id==="espada")return '<h2>Espada</h2>';
   return '<h2>Formation & Aide</h2><p>Bonjour cher formateur, voici comment fonctionne la formation des nouveaux Arrancars.</p>'+
     '<section class="step"><h3>1. Lorsque vous faites face à un jeune Arrancar</h3><p>Demandez-lui :</p><ul><li>Nom et prénom</li></ul><p>(Hrp : apprenez-lui à se présenter à vous avec la touche, tout en restant RP. Pour l’aider, utilisez des mots comme « Concentre-toi, fixe mon épaule et présente-toi ». Expliquez-le dans le chat HRP s’il a du mal.)</p></section>'+
