@@ -440,6 +440,7 @@ document.addEventListener("keydown", event => {
 window.addEventListener("hashchange", render);
 render();
 
+/* Barre vide au départ, puis progression sur 5 secondes. */
 const intro = document.getElementById("intro");
 const percent = document.getElementById("percent");
 const fill = intro.querySelector(".fill");
@@ -449,7 +450,7 @@ function tick(now) {
   if (!intro.isConnected) return;
 
   const progress = Math.min(1, (now - started) / 5000);
-  fill.style.transform = "scaleX(" + progress + ")";
+  fill.style.width = (progress * 100) + "%";
   percent.textContent = Math.floor(progress * 100) + "%";
 
   if (progress < 1) {
@@ -459,8 +460,8 @@ function tick(now) {
 
     setTimeout(() => {
       intro.classList.add("fading");
-      setTimeout(() => intro.remove(), 2800);
-    }, 3200);
+      setTimeout(() => intro.remove(), 3100);
+    }, 3300);
   }
 }
 
