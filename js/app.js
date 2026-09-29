@@ -147,9 +147,14 @@ const pages = {
     eyebrow: "Espada"
   },
   procedure: {
-    title: "Procédure de formations",
+    title: "Procédure de formation",
     parent: "Procédure de formation",
     eyebrow: "Formation & Aide"
+  },
+  "nouveau-formateur": {
+    title: "Nouveau Formateur",
+    parent: "Procédure de formation",
+    eyebrow: "Premiers repères"
   }
 };
 
@@ -230,6 +235,7 @@ function hierarchy() {
     </div>
     <div class="org" role="group" aria-label="Hiérarchie de la sphère formation">
       <span class="org-kicker">Direction</span>
+
       <div class="person org-lead">
         <img src="chef.webp" alt="Portrait illustré d’Azeno Del Vacio" loading="lazy">
         <div class="person-info">
@@ -237,7 +243,9 @@ function hierarchy() {
           <strong>Azeno Del Vacio</strong>
         </div>
       </div>
+
       <div class="stem" aria-hidden="true"></div>
+
       <div class="person org-deputy">
         <img src="sael.webp" alt="Portrait de Sael Valkan" loading="lazy">
         <div class="person-info">
@@ -245,8 +253,10 @@ function hierarchy() {
           <strong>Sael Valkan</strong>
         </div>
       </div>
+
       <div class="stem" aria-hidden="true"></div>
       <div class="team-heading">Formateurs</div>
+
       <div class="trainers">
         ${trainers.map((name, i) => `
           <div class="trainer">
@@ -295,15 +305,42 @@ function content(id) {
 
   if (id === "espada") return "<h2>Espada</h2>";
 
+  if (id === "nouveau-formateur") {
+    return `
+      <h2>Bienvenue dans la sphère formation</h2>
+      <p>Retrouve les informations utiles pour commencer ton rôle de formateur.</p>
+
+      <section class="step">
+        <h3>La hiérarchie</h3>
+        <p>Découvre le Superviseur Chef, le Formateur en Chef et l’équipe de formation.</p>
+        <a class="back" href="#sphere">Voir la hiérarchie →</a>
+      </section>
+
+      <section class="step">
+        <h3>Le règlement</h3>
+        <p>Prends connaissance des articles classés par gravité.</p>
+        <a class="back" href="#reglement">Lire le règlement →</a>
+      </section>
+
+      <section class="step">
+        <h3>La procédure</h3>
+        <p>Consulte les étapes de formation des nouveaux Arrancars.</p>
+        <a class="back" href="#procedure">Voir la procédure →</a>
+      </section>
+    `;
+  }
+
   return `
     <h2>Formation & Aide</h2>
     <p>Bonjour cher formateur, voici comment fonctionne la formation des nouveaux Arrancars.</p>
+
     <section class="step">
       <h3>1. Lorsque vous faites face à un jeune Arrancar</h3>
       <p>Demandez-lui :</p>
       <ul><li>Nom et prénom</li></ul>
       <p>(Hrp : apprenez-lui à se présenter à vous avec la touche, tout en restant RP. Pour l’aider, utilisez des mots comme « Concentre-toi, fixe mon épaule et présente-toi ». Expliquez-le dans le chat HRP s’il a du mal.)</p>
     </section>
+
     <section class="step">
       <h3>2. Étape suivante</h3>
       <p>Le texte de cette étape s’interrompt ici sur le site d’origine.</p>
@@ -320,6 +357,7 @@ function closeMenus() {
 
 function render() {
   let id;
+
   try {
     id = decodeURIComponent(location.hash.slice(1)) || "accueil";
   } catch {
@@ -392,9 +430,11 @@ document.querySelectorAll(".nav-head").forEach(button => {
 document.addEventListener("click", event => {
   if (!event.target.closest(".nav-item")) closeMenus();
 });
+
 document.addEventListener("keydown", event => {
   if (event.key === "Escape") closeMenus();
 });
+
 window.addEventListener("hashchange", render);
 render();
 
