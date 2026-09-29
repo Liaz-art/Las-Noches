@@ -442,16 +442,36 @@ render();
 
 const intro = document.getElementById("intro");
 const percent = document.getElementById("percent");
+const fill = intro.querySelector(".fill");
 const started = performance.now();
 
 function tick(now) {
   if (!intro.isConnected) return;
-  const value = Math.min(100, Math.floor((now - started) / 50));
-  percent.textContent = value + "%";
-  if (value < 100) requestAnimationFrame(tick);
+
+  const progress = Math.min(1, (now - started) / 5000);
+  fill.style.transform = "scaleX(" + progress + ")";
+  percent.textContent = Math.floor(progress * 100) + "%";
+
+  if (progress < 1) {
+    requestAnimationFrame(tick);
+  } else {
+    intro.classList.add("message");
+
+    setTimeout(() => {
+      intro.classList.add("fading");
+      setTimeout(() => intro.remove(), 2800);
+    }, 3200);
+  }
 }
 
+intro.addEventListener("transitionend", event => {
+  if (
+    event.target === intro &&
+    event.propertyName === "opacity" &&
+    intro.classList.contains("fading")
+  ) {
+    intro.remove();
+  }
+});
+
 requestAnimationFrame(tick);
-setTimeout(() => intro.classList.add("message"), 5000);
-setTimeout(() => intro.classList.add("fading"), 7000);
-setTimeout(() => intro.remove(), 8600);
