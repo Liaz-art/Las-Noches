@@ -307,25 +307,27 @@ function content(id) {
 
   if (id === "nouveau-formateur") {
     return `
-      <h2>Bienvenue dans la sphère formation</h2>
-      <p>Retrouve les informations utiles pour commencer ton rôle de formateur.</p>
+      <h2>Comment recruter un formateur</h2>
+      <p>Le recrutement se déroule en trois étapes.</p>
 
       <section class="step">
-        <h3>La hiérarchie</h3>
-        <p>Découvre le Superviseur Chef, le Formateur en Chef et l’équipe de formation.</p>
-        <a class="back" href="#sphere">Voir la hiérarchie →</a>
+        <h3>1. Prendre contact</h3>
+        <p>Avant tout, contactez le Superviseur Chef ou le Formateur en Chef.</p>
       </section>
 
       <section class="step">
-        <h3>Le règlement</h3>
-        <p>Prends connaissance des articles classés par gravité.</p>
-        <a class="back" href="#reglement">Lire le règlement →</a>
+        <h3>2. Passer un entretien oral</h3>
+        <p>La personne candidate passe ensuite un entretien oral devant le Superviseur Chef ou le Formateur en Chef.</p>
       </section>
 
       <section class="step">
-        <h3>La procédure</h3>
-        <p>Consulte les étapes de formation des nouveaux Arrancars.</p>
-        <a class="back" href="#procedure">Voir la procédure →</a>
+        <h3>3. Réussir l’examen</h3>
+        <p>Un examen lui est proposé. Pour être admise, elle doit le compléter et obtenir suffisamment de points.</p>
+      </section>
+
+      <section class="step">
+        <h3>Moyens de contact</h3>
+        <p>Contactez le Superviseur Chef ou le Formateur en Chef sur Discord ou par missive en jeu.</p>
       </section>
     `;
   }
