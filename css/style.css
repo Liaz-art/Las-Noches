@@ -211,7 +211,7 @@ h1, h2, h3 {
 .footer b { font: 17px Georgia, serif; letter-spacing: .13em; }
 .footer span, .footer a { color: var(--muted); font-size: 12px; }
 
-/* Hiérarchie */
+/* Hiérarchie de formation */
 .org-intro { margin-bottom: 30px; }
 .org-intro h2 { font-size: 42px; margin: 12px 0; }
 .org-intro p { color: var(--muted); }
@@ -288,6 +288,77 @@ h1, h2, h3 {
   text-transform: uppercase;
 }
 .trainer strong { display: block; margin-top: 3px; font: 21px/1.2 Georgia, serif; }
+
+/* Roi, Espada et Privaron */
+.court-intro { text-align: center; margin: 0 auto 42px; max-width: 700px; }
+.court-intro h2 { font-size: clamp(38px, 5vw, 60px); margin: 15px 0; }
+.court-intro p { color: var(--muted); }
+.court { max-width: 1040px; margin: auto; }
+.throne {
+  max-width: 390px;
+  margin: auto;
+  padding: 32px 20px 36px;
+  text-align: center;
+  border: 1px solid #a27477;
+  background: radial-gradient(circle at 50% 0, #6e303649, transparent 65%), #202024;
+  box-shadow: 0 20px 48px #0005;
+}
+.throne-symbol {
+  display: block;
+  color: var(--red);
+  font-size: 40px;
+  line-height: 1;
+  margin-bottom: 14px;
+}
+.throne small {
+  display: block;
+  color: var(--cream);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+}
+.throne strong {
+  display: block;
+  margin-top: 8px;
+  font: clamp(34px, 4vw, 48px)/1.15 Georgia, serif;
+}
+.court-line { height: 54px; width: 1px; margin: auto; background: #a47378; }
+.rank-section { margin-bottom: 54px; }
+.rank-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding-bottom: 13px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #6c5357;
+}
+.rank-heading span { color: var(--red); font: 25px Georgia, serif; }
+.rank-heading h2 { font-size: 38px; margin: 0; }
+.rank-heading p { margin: 0 0 0 auto; color: var(--muted); font-size: 12px; }
+.rank-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+.rank-card {
+  min-height: 165px;
+  padding: 20px 16px;
+  border: 1px solid #494449;
+  background: linear-gradient(150deg, #242126, #1a1b1f);
+}
+.rank-number {
+  display: block;
+  color: var(--red);
+  font: 15px Georgia, serif;
+  letter-spacing: .08em;
+}
+.rank-card h3 {
+  margin: 19px 0 8px;
+  font-size: clamp(20px, 2vw, 26px);
+  overflow-wrap: anywhere;
+}
+.rank-card p { margin: 0; color: var(--cream); font-size: 12px; line-height: 1.45; }
 
 /* Objectifs */
 .objectives-intro { max-width: 720px; margin-bottom: 34px; }
@@ -393,8 +464,6 @@ h1, h2, h3 {
   height: auto;
   filter: drop-shadow(0 0 20px #b8444a77);
 }
-
-/* Aucune ligne de fond : la barre commence réellement vide. */
 .track {
   height: 3px;
   margin-top: 22px;
@@ -417,8 +486,6 @@ h1, h2, h3 {
   letter-spacing: .2em;
   text-transform: uppercase;
 }
-
-/* Le texte arrive de droite à gauche. */
 .intro-message {
   padding: 0 24px;
   font-family: Georgia, serif;
@@ -440,10 +507,7 @@ h1, h2, h3 {
   font-weight: 400;
   text-shadow: 0 0 32px #b8444a55;
 }
-.intro.message .intro-loading {
-  opacity: 0;
-  transform: translateY(-15px);
-}
+.intro.message .intro-loading { opacity: 0; transform: translateY(-15px); }
 .intro.message .intro-message {
   opacity: 1;
   transform: translateX(0);
@@ -469,6 +533,7 @@ h1, h2, h3 {
   .page-top { padding: 35px 0 48px; }
   .crumb { margin-bottom: 35px; }
   .trainers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rank-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 650px) {
@@ -478,6 +543,10 @@ h1, h2, h3 {
   .hero p { font-size: 16px; }
   .org { max-width: 360px; padding: 28px 18px; }
   .trainers { grid-template-columns: 1fr; }
+  .rank-grid { grid-template-columns: 1fr; }
+  .rank-card { min-height: 0; }
+  .rank-heading { flex-wrap: wrap; }
+  .rank-heading p { width: 100%; margin-left: 0; }
   .objective { grid-template-columns: 40px 1fr; gap: 12px; padding: 22px 18px; }
   .objective h3 { font-size: 25px; }
   .rule { display: block; }
