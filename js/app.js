@@ -273,27 +273,27 @@ function hierarchy() {
 }
 
 function royalHierarchy() {
-  const espadas = [
-    ["1", "Calcume", "Gérant Ordre 1"],
-    ["2", "Azeno Del Vacio", "Gérant Ordre 4"],
-    ["3", "Islas Torres", "Gérant Ordre 2"],
-    ["4", "Tosen", "Gérant Ordre 3"],
-    ["5", "Akira Isogy", "Gérant Ordre 5"]
+  const orders = [
+    { order: "1", rank: "1", espada: "Calcume", privaron: "Ethan", co: "Co-gérant" },
+    { order: "2", rank: "3", espada: "Islas Torres", privaron: "Saitekuro", co: "Co-gérant" },
+    { order: "3", rank: "4", espada: "Tosen", privaron: "Selena Solsticio", co: "Co-gérante" },
+    { order: "4", rank: "2", espada: "Azeno Del Vacio", privaron: "Akuma", co: "Co-gérant" },
+    { order: "5", rank: "5", espada: "Akira Isogy", privaron: "Lucifere Lowneur", co: "Co-gérant" }
   ];
 
-  const privarons = [
-    ["01", "Ethan", "Co-gérant Ordre 1"],
-    ["02", "Selena Solsticio", "Co-gérante Ordre 3"],
-    ["03", "Saitekuro", "Co-gérant Ordre 2"],
-    ["04", "Akuma", "Co-gérant Ordre 4"],
-    ["05", "Lucifere Lowneur", "Co-gérant Ordre 5"]
-  ];
-
-  const cards = (people, numbered) => people.map(([number, name, order]) => `
+  const espadas = orders.map(({ order, rank, espada }) => `
     <article class="rank-card">
-      <span class="rank-number">${numbered ? "N° " + escapeHTML(number) : "Privaron"}</span>
-      <h3>${escapeHTML(name)}</h3>
-      <p>${escapeHTML(order)}</p>
+      <span class="rank-number">N° ${escapeHTML(rank)}</span>
+      <h3>${escapeHTML(espada)}</h3>
+      <p>Gérant Ordre ${order}</p>
+    </article>
+  `).join("");
+
+  const privarons = orders.map(({ order, privaron, co }) => `
+    <article class="rank-card">
+      <span class="rank-number">Ordre ${order}</span>
+      <h3>${escapeHTML(privaron)}</h3>
+      <p>${escapeHTML(co)} Ordre ${order}</p>
     </article>
   `).join("");
 
@@ -313,22 +313,26 @@ function royalHierarchy() {
 
       <div class="court-line" aria-hidden="true"></div>
 
-      <section class="rank-section">
-        <div class="rank-heading">
+      <section class="royal-tier" aria-labelledby="espada-title">
+        <div class="tier-heading">
           <span>01</span>
-          <h2>Espada</h2>
+          <h2 id="espada-title">Espada</h2>
           <p>Gérants des ordres</p>
         </div>
-        <div class="rank-grid">${cards(espadas, true)}</div>
+        <div class="tier-grid">${espadas}</div>
       </section>
 
-      <section class="rank-section">
-        <div class="rank-heading">
+      <div class="tier-lines" aria-hidden="true">
+        <i></i><i></i><i></i><i></i><i></i>
+      </div>
+
+      <section class="royal-tier" aria-labelledby="privaron-title">
+        <div class="tier-heading">
           <span>02</span>
-          <h2>Privaron</h2>
+          <h2 id="privaron-title">Privaron</h2>
           <p>Co-gérants des ordres</p>
         </div>
-        <div class="rank-grid">${cards(privarons, false)}</div>
+        <div class="tier-grid">${privarons}</div>
       </section>
     </div>
   `;
