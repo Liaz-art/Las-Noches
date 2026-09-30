@@ -142,9 +142,9 @@ const pages = {
     eyebrow: "Organigramme"
   },
   espada: {
-    title: "Espada Las Noches",
+    title: "Roi / Espada / Privaron Las Noches",
     parent: "Hiérarchie",
-    eyebrow: "Espada"
+    eyebrow: "Pouvoir de Las Noches"
   },
   procedure: {
     title: "Procédure de formation",
@@ -272,9 +272,72 @@ function hierarchy() {
   `;
 }
 
+function royalHierarchy() {
+  const espadas = [
+    ["1", "Calcume", "Gérant Ordre 1"],
+    ["2", "Azeno Del Vacio", "Gérant Ordre 4"],
+    ["3", "Islas Torres", "Gérant Ordre 2"],
+    ["4", "Tosen", "Gérant Ordre 3"],
+    ["5", "Akira Isogy", "Gérant Ordre 5"]
+  ];
+
+  const privarons = [
+    ["01", "Ethan", "Co-gérant Ordre 1"],
+    ["02", "Selena Solsticio", "Co-gérante Ordre 3"],
+    ["03", "Saitekuro", "Co-gérant Ordre 2"],
+    ["04", "Akuma", "Co-gérant Ordre 4"],
+    ["05", "Lucifere Lowneur", "Co-gérant Ordre 5"]
+  ];
+
+  const cards = (people, numbered) => people.map(([number, name, order]) => `
+    <article class="rank-card">
+      <span class="rank-number">${numbered ? "N° " + escapeHTML(number) : "Privaron"}</span>
+      <h3>${escapeHTML(name)}</h3>
+      <p>${escapeHTML(order)}</p>
+    </article>
+  `).join("");
+
+  return `
+    <div class="court-intro">
+      <span class="eyebrow">Hiérarchie de Las Noches</span>
+      <h2>Le Roi et ses rangs</h2>
+      <p>Les Espada dirigent les ordres, assistés par les Privaron.</p>
+    </div>
+
+    <div class="court">
+      <div class="throne">
+        <span class="throne-symbol" aria-hidden="true">♛</span>
+        <small>Roi</small>
+        <strong>Sammael</strong>
+      </div>
+
+      <div class="court-line" aria-hidden="true"></div>
+
+      <section class="rank-section">
+        <div class="rank-heading">
+          <span>01</span>
+          <h2>Espada</h2>
+          <p>Gérants des ordres</p>
+        </div>
+        <div class="rank-grid">${cards(espadas, true)}</div>
+      </section>
+
+      <section class="rank-section">
+        <div class="rank-heading">
+          <span>02</span>
+          <h2>Privaron</h2>
+          <p>Co-gérants des ordres</p>
+        </div>
+        <div class="rank-grid">${cards(privarons, false)}</div>
+      </section>
+    </div>
+  `;
+}
+
 function content(id) {
   if (id === "reglement") return rules();
   if (id === "sphere") return hierarchy();
+  if (id === "espada") return royalHierarchy();
 
   if (id === "objectifs") {
     const objectives = [
@@ -302,8 +365,6 @@ function content(id) {
       </div>
     `;
   }
-
-  if (id === "espada") return "<h2>Espada</h2>";
 
   if (id === "nouveau-formateur") {
     return `
@@ -440,7 +501,6 @@ document.addEventListener("keydown", event => {
 window.addEventListener("hashchange", render);
 render();
 
-/* Barre vide au départ, puis progression sur 5 secondes. */
 const intro = document.getElementById("intro");
 const percent = document.getElementById("percent");
 const fill = intro.querySelector(".fill");
