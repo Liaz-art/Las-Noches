@@ -324,22 +324,35 @@ h1, h2, h3 {
   font: clamp(34px, 4vw, 48px)/1.15 Georgia, serif;
 }
 .court-line { height: 54px; width: 1px; margin: auto; background: #a47378; }
-.rank-section { margin-bottom: 54px; }
-.rank-heading {
+.royal-tier { margin: 0; }
+.tier-heading {
   display: flex;
   align-items: baseline;
   gap: 18px;
-  padding-bottom: 13px;
+  padding: 0 0 13px;
   margin-bottom: 18px;
   border-bottom: 1px solid #6c5357;
 }
-.rank-heading span { color: var(--red); font: 25px Georgia, serif; }
-.rank-heading h2 { font-size: 38px; margin: 0; }
-.rank-heading p { margin: 0 0 0 auto; color: var(--muted); font-size: 12px; }
-.rank-grid {
+.tier-heading span { color: var(--red); font: 25px Georgia, serif; }
+.tier-heading h2 { font-size: 38px; margin: 0; }
+.tier-heading p { margin: 0 0 0 auto; color: var(--muted); font-size: 12px; }
+.tier-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 12px;
+}
+.tier-lines {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+  height: 55px;
+}
+.tier-lines i {
+  display: block;
+  width: 1px;
+  height: 100%;
+  margin: auto;
+  background: #a47378;
 }
 .rank-card {
   min-height: 165px;
@@ -464,12 +477,7 @@ h1, h2, h3 {
   height: auto;
   filter: drop-shadow(0 0 20px #b8444a77);
 }
-.track {
-  height: 3px;
-  margin-top: 22px;
-  overflow: hidden;
-  background: transparent;
-}
+.track { height: 3px; margin-top: 22px; overflow: hidden; background: transparent; }
 .fill {
   display: block;
   width: 0;
@@ -533,7 +541,10 @@ h1, h2, h3 {
   .page-top { padding: 35px 0 48px; }
   .crumb { margin-bottom: 35px; }
   .trainers { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .rank-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tier-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tier-lines { display: none; }
+  .tier-lines + .royal-tier { margin-top: 42px; }
+  .court-line { height: 28px; }
 }
 
 @media (max-width: 650px) {
@@ -543,10 +554,10 @@ h1, h2, h3 {
   .hero p { font-size: 16px; }
   .org { max-width: 360px; padding: 28px 18px; }
   .trainers { grid-template-columns: 1fr; }
-  .rank-grid { grid-template-columns: 1fr; }
+  .tier-grid { grid-template-columns: 1fr; }
+  .tier-heading { flex-wrap: wrap; }
+  .tier-heading p { width: 100%; margin-left: 0; }
   .rank-card { min-height: 0; }
-  .rank-heading { flex-wrap: wrap; }
-  .rank-heading p { width: 100%; margin-left: 0; }
   .objective { grid-template-columns: 40px 1fr; gap: 12px; padding: 22px 18px; }
   .objective h3 { font-size: 25px; }
   .rule { display: block; }
